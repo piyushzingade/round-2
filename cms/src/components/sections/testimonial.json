@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_sections_testimonials",
+  "info": {
+    "displayName": "Testimonial"
+  },
+  "options": {},
+  "attributes": {
+    "quote": {
+      "type": "text",
+      "required": true
+    },
+    "customerName": {
+      "type": "string",
+      "required": true
+    },
+    "customerRole": {
+      "type": "string"
+    },
+    "company": {
+      "type": "string"
+    },
+    "imageUrl": {
+      "type": "string"
+    },
+    "imageAlt": {
+      "type": "string"
+    }
+  }
+}

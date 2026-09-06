@@ -1,0 +1,42 @@
+{
+  "collectionName": "components_sections_heroes",
+  "info": {
+    "displayName": "Hero",
+    "description": "Primary landing page hero with approved layout variants."
+  },
+  "options": {},
+  "attributes": {
+    "variant": {
+      "type": "enumeration",
+      "enum": ["centered", "split"],
+      "default": "split",
+      "required": true
+    },
+    "eyebrow": {
+      "type": "string"
+    },
+    "headline": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "primaryCTA": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.cta-link"
+    },
+    "secondaryCTA": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.cta-link"
+    },
+    "imageUrl": {
+      "type": "string"
+    },
+    "imageAlt": {
+      "type": "string"
+    }
+  }
+}

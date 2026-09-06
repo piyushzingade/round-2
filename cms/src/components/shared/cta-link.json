@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_shared_cta_links",
+  "info": {
+    "displayName": "CTA Link",
+    "description": "Approved call-to-action content. Styling is controlled by the frontend."
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "url": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

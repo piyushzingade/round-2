@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_sections_navbars",
+  "info": {
+    "displayName": "Navbar",
+    "description": "Top navigation. Marketing controls labels and destinations only."
+  },
+  "options": {},
+  "attributes": {
+    "logoText": {
+      "type": "string",
+      "required": true
+    },
+    "logoImageUrl": {
+      "type": "string"
+    },
+    "links": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.nav-link"
+    },
+    "cta": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.cta-link"
+    }
+  }
+}

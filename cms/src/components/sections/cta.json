@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_sections_ctas",
+  "info": {
+    "displayName": "CTA Section"
+  },
+  "options": {},
+  "attributes": {
+    "variant": {
+      "type": "enumeration",
+      "enum": ["light", "brand"],
+      "default": "brand",
+      "required": true
+    },
+    "headline": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "cta": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.cta-link",
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_sections_footers",
+  "info": {
+    "displayName": "Footer"
+  },
+  "options": {},
+  "attributes": {
+    "companyName": {
+      "type": "string",
+      "required": true
+    },
+    "links": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.footer-link"
+    },
+    "copyright": {
+      "type": "string"
+    }
+  }
+}

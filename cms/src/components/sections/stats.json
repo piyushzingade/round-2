@@ -5,6 +5,13 @@
   },
   "options": {},
   "attributes": {
+    "isVisible": {
+      "type": "boolean",
+      "default": true
+    },
+    "eyebrow": {
+      "type": "string"
+    },
     "title": {
       "type": "string"
     },

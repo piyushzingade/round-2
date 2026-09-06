@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_sections_logo_clouds",
+  "info": {
+    "displayName": "Logo / Trust Section"
+  },
+  "options": {},
+  "attributes": {
+    "isVisible": {
+      "type": "boolean",
+      "default": true
+    },
+    "title": {
+      "type": "string"
+    },
+    "logos": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.logo-item"
+    }
+  }
+}

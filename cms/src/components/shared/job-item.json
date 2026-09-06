@@ -1,0 +1,38 @@
+{
+  "collectionName": "components_shared_job_items",
+  "info": {
+    "displayName": "Job Item"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "location": {
+      "type": "string"
+    },
+    "employmentType": {
+      "type": "enumeration",
+      "enum": ["full-time", "part-time", "contract", "internship"],
+      "default": "full-time"
+    },
+    "description": {
+      "type": "text"
+    },
+    "requirements": {
+      "type": "json"
+    },
+    "jobId": {
+      "type": "string"
+    },
+    "applyURL": {
+      "type": "string"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["open", "closed"],
+      "default": "open"
+    }
+  }
+}

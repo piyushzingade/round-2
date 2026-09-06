@@ -12,12 +12,14 @@ export function StatsSection({ data }: { data: StatsSectionType }) {
   return (
     <Section id="results" className="bg-slate-950 text-white">
       <Container>
+        {data.eyebrow ? <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-cyan-200">{data.eyebrow}</p> : null}
         {data.title ? <h2 className="max-w-2xl text-3xl font-semibold tracking-normal sm:text-4xl">{data.title}</h2> : null}
         <div className="mt-10 grid gap-px overflow-hidden rounded-lg border border-white/10 bg-white/10 sm:grid-cols-3">
           {stats.map((stat) => (
             <div key={stat.id ?? stat.label} className="bg-slate-950 p-6 sm:p-8">
               <p className="text-4xl font-semibold tracking-normal text-cyan-200">{stat.value}</p>
               <p className="mt-2 text-sm font-medium uppercase tracking-wider text-slate-300">{stat.label}</p>
+              {stat.description ? <p className="mt-4 text-sm leading-6 text-slate-400">{stat.description}</p> : null}
             </div>
           ))}
         </div>

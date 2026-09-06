@@ -13,6 +13,10 @@
     "url": {
       "type": "string",
       "required": true
+    },
+    "openInNewTab": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

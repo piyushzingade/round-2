@@ -446,8 +446,8 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
 export interface ApiLandingPageLandingPage extends Struct.CollectionTypeSchema {
   collectionName: 'landing_pages';
   info: {
-    description: 'CMS-authored marketing landing pages rendered by the Next.js frontend.';
-    displayName: 'Landing Page';
+    description: 'CMS-authored WFYI website pages rendered by the Next.js frontend.';
+    displayName: 'Page';
     pluralName: 'landing-pages';
     singularName: 'landing-page';
   };
@@ -455,6 +455,7 @@ export interface ApiLandingPageLandingPage extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    canonicalURL: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -465,21 +466,88 @@ export interface ApiLandingPageLandingPage extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     name: Schema.Attribute.String & Schema.Attribute.Required;
+    noIndex: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    openGraphDescription: Schema.Attribute.Text;
+    openGraphImage: Schema.Attribute.Media<'images'>;
+    openGraphTitle: Schema.Attribute.String;
+    pageType: Schema.Attribute.Enumeration<
+      ['standard', 'landing', 'campaign', 'article-index', 'careers', 'legal']
+    > &
+      Schema.Attribute.DefaultTo<'standard'>;
+    path: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
     publishedAt: Schema.Attribute.DateTime;
     sections: Schema.Attribute.DynamicZone<
       [
         'sections.navbar',
         'sections.hero',
+        'sections.section-header',
         'sections.feature-grid',
+        'sections.image-content',
         'sections.stats',
+        'sections.testimonials',
         'sections.testimonial',
+        'sections.logo-cloud',
+        'sections.service-grid',
+        'sections.product-showcase',
+        'sections.faq',
+        'sections.rich-text',
+        'sections.sidebar-layout',
+        'sections.job-list',
         'sections.cta',
         'sections.footer',
       ]
     >;
     seoDescription: Schema.Attribute.Text;
     seoTitle: Schema.Attribute.String;
-    slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
+    showFooter: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    showNavbar: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    slug: Schema.Attribute.UID<'name'> &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    template: Schema.Attribute.Enumeration<
+      ['standard', 'marketing', 'careers', 'content', 'campaign']
+    > &
+      Schema.Attribute.DefaultTo<'standard'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSiteSettingSiteSetting extends Struct.SingleTypeSchema {
+  collectionName: 'site_settings';
+  info: {
+    description: 'Global WFYI navbar, footer, brand, and SEO defaults.';
+    displayName: 'Global Site Settings';
+    pluralName: 'site-settings';
+    singularName: 'site-setting';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    brandDescription: Schema.Attribute.Text;
+    brandName: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'WFYI'>;
+    canonicalBaseUrl: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    defaultSeoDescription: Schema.Attribute.Text;
+    defaultSeoTitle: Schema.Attribute.String;
+    footer: Schema.Attribute.Component<'sections.footer', false>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::site-setting.site-setting'
+    > &
+      Schema.Attribute.Private;
+    navbar: Schema.Attribute.Component<'sections.navbar', false>;
+    openGraphImage: Schema.Attribute.Media<'images'>;
+    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -998,6 +1066,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::landing-page.landing-page': ApiLandingPageLandingPage;
+      'api::site-setting.site-setting': ApiSiteSettingSiteSetting;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

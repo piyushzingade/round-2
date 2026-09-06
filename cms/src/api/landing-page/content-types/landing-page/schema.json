@@ -4,8 +4,8 @@
   "info": {
     "singularName": "landing-page",
     "pluralName": "landing-pages",
-    "displayName": "Landing Page",
-    "description": "CMS-authored marketing landing pages rendered by the Next.js frontend."
+    "displayName": "Page",
+    "description": "CMS-authored WFYI website pages rendered by the Next.js frontend."
   },
   "options": {
     "draftAndPublish": true
@@ -19,7 +19,32 @@
     "slug": {
       "type": "uid",
       "targetField": "name",
-      "required": true
+      "required": true,
+      "unique": true
+    },
+    "path": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "regex": "^/[a-z0-9][a-z0-9\\-/_]*$|^/$"
+    },
+    "pageType": {
+      "type": "enumeration",
+      "enum": ["standard", "landing", "campaign", "article-index", "careers", "legal"],
+      "default": "standard"
+    },
+    "template": {
+      "type": "enumeration",
+      "enum": ["standard", "marketing", "careers", "content", "campaign"],
+      "default": "standard"
+    },
+    "showNavbar": {
+      "type": "boolean",
+      "default": true
+    },
+    "showFooter": {
+      "type": "boolean",
+      "default": true
     },
     "seoTitle": {
       "type": "string"
@@ -27,14 +52,42 @@
     "seoDescription": {
       "type": "text"
     },
+    "canonicalURL": {
+      "type": "string"
+    },
+    "noIndex": {
+      "type": "boolean",
+      "default": false
+    },
+    "openGraphTitle": {
+      "type": "string"
+    },
+    "openGraphDescription": {
+      "type": "text"
+    },
+    "openGraphImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
     "sections": {
       "type": "dynamiczone",
       "components": [
         "sections.navbar",
         "sections.hero",
+        "sections.section-header",
         "sections.feature-grid",
+        "sections.image-content",
         "sections.stats",
+        "sections.testimonials",
         "sections.testimonial",
+        "sections.logo-cloud",
+        "sections.service-grid",
+        "sections.product-showcase",
+        "sections.faq",
+        "sections.rich-text",
+        "sections.sidebar-layout",
+        "sections.job-list",
         "sections.cta",
         "sections.footer"
       ]

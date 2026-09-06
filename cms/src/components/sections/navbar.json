@@ -13,12 +13,27 @@
     "logoImageUrl": {
       "type": "string"
     },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "navigationItems": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.nav-item"
+    },
     "links": {
       "type": "component",
       "repeatable": true,
       "component": "shared.nav-link"
     },
     "cta": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.cta-link"
+    },
+    "secondaryCTA": {
       "type": "component",
       "repeatable": false,
       "component": "shared.cta-link"

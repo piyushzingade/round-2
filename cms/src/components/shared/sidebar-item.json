@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_shared_sidebar_items",
+  "info": {
+    "displayName": "Sidebar Item"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "url": {
+      "type": "string",
+      "required": true
+    },
+    "icon": {
+      "type": "enumeration",
+      "enum": ["document", "tax", "legal", "finance", "security"],
+      "default": "document"
+    }
+  }
+}

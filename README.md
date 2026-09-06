@@ -1,21 +1,23 @@
-# CMS-Driven Landing Page MVP
+# CMS-Driven Website MVP
 
-This repo demonstrates a small landing-page system where Marketing and Sales edit content in Strapi while Engineering controls the visual system in Next.js, React, TypeScript, and Tailwind.
+This repo demonstrates a small CMS-driven page system for WFYI Technology and its FylFlix compliance platform. Marketing and Sales manage structured content in Strapi while Engineering controls the page renderer, component library, and Tailwind design system in Next.js.
 
 ## Problem
 
-Marketing teams often need developers for every landing-page headline, CTA, image, section order, or campaign page. That slows campaigns down and turns content edits into engineering work.
+Marketing teams often need developers for page copy, CTAs, images, section order, service pages, resource pages, and campaign pages. That slows launches down and turns routine content changes into engineering work.
 
 ## Solution
 
-Strapi stores structured content: page names, slugs, SEO fields, section order, section visibility, copy, CTAs, and image URLs. Next.js renders that content through approved React components and shared Tailwind primitives. Marketing controls what appears; the frontend controls how it looks.
+Strapi stores structured page content: paths, SEO fields, visibility toggles, approved sections, section order, copy, CTAs, and media. Next.js fetches published CMS content and renders it through reusable React components. Editors control what appears; the frontend controls how it looks.
 
 ```text
-Marketing
+Marketing / Sales
    ↓
-Strapi
+Strapi CMS
    ↓
-API
+Structured Page Content
+   ↓
+Strapi API
    ↓
 Next.js
    ↓
@@ -26,11 +28,24 @@ Component Registry
 Design System
 ```
 
+## What Is Included
+
+- Strapi 5 Community Edition with SQLite for local development.
+- A `Page` collection using Draft & Publish and a Dynamic Zone of approved sections.
+- A `Site Setting` single type for global brand, default SEO, navbar, and footer content.
+- Centralized Next.js catch-all routing with `[[...path]]`, so CMS records can own `/`, `/about`, `/careers`, `/gst`, and `/resources/gst-guide`.
+- A legacy `/landing/[slug]` route that redirects old slug-based records to their CMS-managed path.
+- A small `/admin-preview` frontend page that lists CMS pages and links to published or draft views.
+- A secure local draft preview route at `/preview/...` using `STRAPI_PREVIEW_SECRET`.
+- Reusable section components for hero, headers, features, services, stats, testimonials, image/content, logo cloud, FAQ, rich text, sidebar resources, jobs, CTA, navbar, and footer.
+
 ## Why This Scales
 
-1,000 landing pages should not mean 1,000 React page files.
+1,000 pages does not mean 1,000 React files.
 
 ```text
+1 route resolver
++
 1 renderer
 +
 reusable components
@@ -38,7 +53,7 @@ reusable components
 1,000 CMS records
 ```
 
-The MVP includes a single dynamic route, `/landing/[slug]`, so new published Strapi records render without adding frontend routes.
+Adding a new page is a content operation in Strapi. Engineers only get involved when the team wants a new approved component or variant.
 
 ## Running Locally
 
@@ -53,11 +68,14 @@ npm install
 npm run develop
 ```
 
-Open Strapi at [http://localhost:1337](http://localhost:1337), create the first admin user, and open Content Manager > Landing Pages. The project seeds:
+Open Strapi at [http://localhost:1337](http://localhost:1337), create the first admin user, and open Content Manager. The bootstrap script seeds:
 
-- AI Platform
-- AI for Healthcare
-- Sales Automation
+- `/` - WFYI Technology home
+- `/about` - company overview
+- `/careers` - hiring page
+- `/gst` - focused GST campaign page
+- `/resources/gst-guide` - nested resource page
+- `/partners/summer` - draft campaign page
 
 Terminal 2:
 
@@ -71,32 +89,77 @@ npm run dev
 Open:
 
 - Frontend: [http://localhost:3000](http://localhost:3000)
-- Healthcare demo: [http://localhost:3000/landing/ai-for-healthcare](http://localhost:3000/landing/ai-for-healthcare)
+- GST campaign: [http://localhost:3000/gst](http://localhost:3000/gst)
+- GST guide: [http://localhost:3000/resources/gst-guide](http://localhost:3000/resources/gst-guide)
 - Page list: [http://localhost:3000/admin-preview](http://localhost:3000/admin-preview)
+
+## Environment
+
+Frontend:
+
+```bash
+NEXT_PUBLIC_STRAPI_URL=http://localhost:1337
+STRAPI_API_TOKEN=
+STRAPI_PREVIEW_SECRET=local-preview-secret
+```
+
+CMS:
+
+```bash
+STRAPI_PREVIEW_SECRET=local-preview-secret
+```
+
+No paid services are required. The API token is optional for local public-read development.
 
 ## Demo Flow
 
 1. Open Strapi.
-2. Open `AI for Healthcare`.
-3. Change the hero headline from `AI built for modern healthcare teams` to `Transform healthcare operations with AI`.
-4. Change the primary CTA from `Learn More` to `Book a Demo`.
-5. Optionally add, remove, or reorder an approved section.
-6. Publish.
-7. Refresh `/landing/ai-for-healthcare`.
-8. The content updates while the design remains consistent.
+2. Open the published page at `/gst` or `/`.
+3. Change the hero headline or CTA text.
+4. Add, remove, hide, or reorder an approved section.
+5. Publish.
+6. Refresh the matching frontend URL.
+7. The content updates while layout, spacing, typography, colors, and component behavior remain controlled by React and Tailwind.
 
-To prove scalability, create a new Strapi Landing Page with slug `ai-for-financial-services`, add approved sections, publish it, and open `/landing/ai-for-financial-services`. No new React route is required.
+To prove the scaling model, create a new Strapi Page with path `/financial-services`, add approved sections, publish it, and open [http://localhost:3000/financial-services](http://localhost:3000/financial-services). No new React route file is required.
+
+## CMS Rules
+
+Editors can control:
+
+- page name and path
+- SEO title and description
+- navbar/footer visibility
+- section order and visibility
+- approved component variants
+- copy, CTAs, links, media, alt text, and captions
+
+Editors cannot control:
+
+- arbitrary CSS
+- Tailwind class names
+- raw HTML
+- JavaScript
+- custom margins, colors, font sizes, or layout positioning
 
 ## Adding a Component
 
-1. Create a Strapi component under `cms/src/components/sections`.
-2. Add it to the Landing Page Dynamic Zone in `cms/src/api/landing-page/content-types/landing-page/schema.json`.
+1. Create a Strapi section component under `cms/src/components/sections`.
+2. Add it to the Page Dynamic Zone in `cms/src/api/landing-page/content-types/landing-page/schema.json`.
 3. Create the matching React section component in `frontend/src/components/sections`.
-4. Add its type to `frontend/src/types/cms.ts`.
+4. Add its TypeScript shape in `frontend/src/types/cms.ts`.
 5. Register it in `frontend/src/lib/componentRegistry.ts`.
 
-The CMS should store content and approved variants only. Do not store Tailwind classes, raw HTML, arbitrary colors, or layout values in Strapi.
+The CMS should store content and approved variants only. Styling decisions stay in the frontend.
 
 ## Future Production Architecture
 
-This MVP intentionally does not implement production infrastructure. A production version could add PostgreSQL, CDN caching, object storage, Strapi webhooks, Next.js revalidation, RBAC, preview mode, monitoring, and backups.
+This MVP intentionally avoids production infrastructure. A production version could add:
+
+- PostgreSQL
+- CDN caching
+- object storage or Cloudinary for media
+- Strapi webhooks and Next.js revalidation
+- RBAC and approvals
+- richer authenticated preview
+- monitoring, backups, and audit trails

@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_shared_product_items",
+  "info": {
+    "displayName": "Product Item"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "imageUrl": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "cta": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.cta-link"
+    },
+    "features": {
+      "type": "json"
+    }
+  }
+}

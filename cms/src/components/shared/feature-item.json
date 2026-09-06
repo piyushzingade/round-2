@@ -13,6 +13,11 @@
       "type": "text",
       "required": true
     },
+    "link": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.cta-link"
+    },
     "icon": {
       "type": "enumeration",
       "enum": ["shield", "workflow", "chart", "users", "lock", "spark"],

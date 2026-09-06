@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_sections_section_headers",
+  "info": {
+    "displayName": "Section Header"
+  },
+  "options": {},
+  "attributes": {
+    "isVisible": {
+      "type": "boolean",
+      "default": true
+    },
+    "eyebrow": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "alignment": {
+      "type": "enumeration",
+      "enum": ["left", "center"],
+      "default": "left"
+    }
+  }
+}

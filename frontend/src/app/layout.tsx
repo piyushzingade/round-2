@@ -13,8 +13,8 @@ const sourceSerif = Source_Serif_4({
 });
 
 export const metadata: Metadata = {
-  title: "AtlasIQ Landing Pages",
-  description: "CMS-driven landing pages rendered with approved reusable components.",
+  title: "WFYI Technology",
+  description: "CMS-driven WFYI pages rendered with approved reusable components.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

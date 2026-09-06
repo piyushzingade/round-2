@@ -31,11 +31,17 @@ export function Button({
   className = "",
   ...props
 }: ButtonProps) {
+  const isExternal = href.startsWith("http");
+  const target = props.target ?? (isExternal ? "_blank" : undefined);
+  const rel = target === "_blank" ? "noreferrer" : props.rel;
+
   return (
     <Link
       href={href}
       className={`inline-flex items-center justify-center rounded-md font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900 ${variantClasses[variant]} ${sizeClasses[size]} ${className}`}
       {...props}
+      target={target}
+      rel={rel}
     >
       {children}
     </Link>

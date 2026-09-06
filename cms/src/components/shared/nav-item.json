@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_shared_nav_items",
+  "info": {
+    "displayName": "Navigation Item",
+    "description": "Top-level navigation item. Dropdown behavior is controlled by React."
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "url": {
+      "type": "string"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": ["link", "dropdown"],
+      "default": "link",
+      "required": true
+    },
+    "children": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.nav-link"
+    }
+  }
+}

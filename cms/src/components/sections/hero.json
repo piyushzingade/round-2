@@ -8,9 +8,13 @@
   "attributes": {
     "variant": {
       "type": "enumeration",
-      "enum": ["centered", "split"],
+      "enum": ["centered", "split", "product", "minimal"],
       "default": "split",
       "required": true
+    },
+    "isVisible": {
+      "type": "boolean",
+      "default": true
     },
     "eyebrow": {
       "type": "string"
@@ -35,8 +39,19 @@
     "imageUrl": {
       "type": "string"
     },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
     "imageAlt": {
       "type": "string"
+    },
+    "imageCaption": {
+      "type": "string"
+    },
+    "trustItems": {
+      "type": "json"
     }
   }
 }

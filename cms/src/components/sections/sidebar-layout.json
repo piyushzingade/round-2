@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_sections_sidebar_layouts",
+  "info": {
+    "displayName": "Sidebar Layout"
+  },
+  "options": {},
+  "attributes": {
+    "isVisible": {
+      "type": "boolean",
+      "default": true
+    },
+    "sidebarTitle": {
+      "type": "string",
+      "required": true
+    },
+    "sidebarItems": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.sidebar-item"
+    },
+    "content": {
+      "type": "richtext",
+      "required": true
+    },
+    "variant": {
+      "type": "enumeration",
+      "enum": ["sticky", "standard"],
+      "default": "sticky"
+    }
+  }
+}

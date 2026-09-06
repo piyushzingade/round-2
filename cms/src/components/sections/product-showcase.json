@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_sections_product_showcases",
+  "info": {
+    "displayName": "Product Showcase"
+  },
+  "options": {},
+  "attributes": {
+    "isVisible": {
+      "type": "boolean",
+      "default": true
+    },
+    "eyebrow": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "products": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.product-item"
+    }
+  }
+}

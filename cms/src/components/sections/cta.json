@@ -7,9 +7,16 @@
   "attributes": {
     "variant": {
       "type": "enumeration",
-      "enum": ["light", "brand"],
+      "enum": ["default", "brand", "dark", "minimal", "light"],
       "default": "brand",
       "required": true
+    },
+    "isVisible": {
+      "type": "boolean",
+      "default": true
+    },
+    "eyebrow": {
+      "type": "string"
     },
     "headline": {
       "type": "string",
@@ -23,6 +30,16 @@
       "repeatable": false,
       "component": "shared.cta-link",
       "required": true
+    },
+    "primaryCTA": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.cta-link"
+    },
+    "secondaryCTA": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.cta-link"
     }
   }
 }

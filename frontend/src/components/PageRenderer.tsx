@@ -6,7 +6,15 @@ export function PageRenderer({ sections }: { sections: CMSSection[] }) {
   return (
     <>
       {sections.map((section, index) => {
+        if (section.isVisible === false) {
+          return null;
+        }
+
         if (!isRegisteredComponent(section.__component)) {
+          if (process.env.NODE_ENV === "development") {
+            console.warn(`Unknown CMS section type: ${section.__component}`);
+          }
+
           return null;
         }
 

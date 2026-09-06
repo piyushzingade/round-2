@@ -1,0 +1,48 @@
+{
+  "kind": "singleType",
+  "collectionName": "site_settings",
+  "info": {
+    "singularName": "site-setting",
+    "pluralName": "site-settings",
+    "displayName": "Global Site Settings",
+    "description": "Global WFYI navbar, footer, brand, and SEO defaults."
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "brandName": {
+      "type": "string",
+      "required": true,
+      "default": "WFYI"
+    },
+    "brandDescription": {
+      "type": "text"
+    },
+    "defaultSeoTitle": {
+      "type": "string"
+    },
+    "defaultSeoDescription": {
+      "type": "text"
+    },
+    "canonicalBaseUrl": {
+      "type": "string"
+    },
+    "openGraphImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "navbar": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.navbar"
+    },
+    "footer": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.footer"
+    }
+  }
+}

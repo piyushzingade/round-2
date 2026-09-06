@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_sections_job_lists",
+  "info": {
+    "displayName": "Careers / Jobs Section"
+  },
+  "options": {},
+  "attributes": {
+    "isVisible": {
+      "type": "boolean",
+      "default": true
+    },
+    "eyebrow": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "jobs": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.job-item"
+    }
+  }
+}

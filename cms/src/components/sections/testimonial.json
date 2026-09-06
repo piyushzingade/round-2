@@ -5,6 +5,10 @@
   },
   "options": {},
   "attributes": {
+    "isVisible": {
+      "type": "boolean",
+      "default": true
+    },
     "quote": {
       "type": "text",
       "required": true
@@ -12,6 +16,9 @@
     "customerName": {
       "type": "string",
       "required": true
+    },
+    "personName": {
+      "type": "string"
     },
     "customerRole": {
       "type": "string"
@@ -22,7 +29,15 @@
     "imageUrl": {
       "type": "string"
     },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
     "imageAlt": {
+      "type": "string"
+    },
+    "highlight": {
       "type": "string"
     }
   }

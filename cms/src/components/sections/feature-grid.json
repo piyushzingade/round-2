@@ -5,6 +5,18 @@
   },
   "options": {},
   "attributes": {
+    "isVisible": {
+      "type": "boolean",
+      "default": true
+    },
+    "variant": {
+      "type": "enumeration",
+      "enum": ["3-column", "2-column", "icon-cards", "minimal"],
+      "default": "3-column"
+    },
+    "eyebrow": {
+      "type": "string"
+    },
     "title": {
       "type": "string",
       "required": true

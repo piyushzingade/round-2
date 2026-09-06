@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_sections_service_grids",
+  "info": {
+    "displayName": "Cards / Service Grid"
+  },
+  "options": {},
+  "attributes": {
+    "isVisible": {
+      "type": "boolean",
+      "default": true
+    },
+    "eyebrow": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "cards": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.service-card"
+    }
+  }
+}

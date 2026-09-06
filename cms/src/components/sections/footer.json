@@ -9,7 +9,20 @@
       "type": "string",
       "required": true
     },
+    "description": {
+      "type": "text"
+    },
+    "linkGroups": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.link-group"
+    },
     "links": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.footer-link"
+    },
+    "legalLinks": {
       "type": "component",
       "repeatable": true,
       "component": "shared.footer-link"

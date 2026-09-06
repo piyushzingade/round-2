@@ -4,31 +4,52 @@ import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 
 export function CTASection({ data }: { data: CTASectionType }) {
-  const isBrand = data.variant === "brand";
+  const isDark = data.variant === "brand" || data.variant === "dark";
+  const primary = data.primaryCTA ?? data.cta;
 
   return (
-    <Section className={isBrand ? "bg-white" : "bg-slate-50"}>
+    <Section className={isDark ? "bg-white" : "bg-slate-50"}>
       <Container>
         <div
           className={`rounded-lg border p-8 sm:p-10 lg:flex lg:items-center lg:justify-between lg:gap-10 ${
-            isBrand
-              ? "border-slate-950 bg-slate-950 text-white"
-              : "border-slate-200 bg-white text-slate-950"
+            isDark ? "border-slate-950 bg-slate-950 text-white" : "border-slate-200 bg-white text-slate-950"
           }`}
         >
           <div className="max-w-2xl">
+            {data.eyebrow ? (
+              <p className={`mb-3 text-sm font-semibold uppercase tracking-wider ${isDark ? "text-cyan-200" : "text-cyan-700"}`}>
+                {data.eyebrow}
+              </p>
+            ) : null}
             <h2 className="text-3xl font-semibold tracking-normal sm:text-4xl">{data.headline}</h2>
             {data.description ? (
-              <p className={`mt-4 text-lg leading-8 ${isBrand ? "text-slate-300" : "text-slate-600"}`}>
+              <p className={`mt-4 text-lg leading-8 ${isDark ? "text-slate-300" : "text-slate-600"}`}>
                 {data.description}
               </p>
             ) : null}
           </div>
-          {data.cta ? (
-            <div className="mt-8 shrink-0 lg:mt-0">
-              <Button href={data.cta.url} variant={isBrand ? "secondary" : "primary"} size="lg">
-                {data.cta.label}
-              </Button>
+          {primary || data.secondaryCTA ? (
+            <div className="mt-8 flex shrink-0 flex-col gap-3 sm:flex-row lg:mt-0">
+              {primary ? (
+                <Button
+                  href={primary.url}
+                  variant={isDark ? "secondary" : "primary"}
+                  size="lg"
+                  target={primary.openInNewTab ? "_blank" : undefined}
+                >
+                  {primary.label}
+                </Button>
+              ) : null}
+              {data.secondaryCTA ? (
+                <Button
+                  href={data.secondaryCTA.url}
+                  variant={isDark ? "secondary" : "outline"}
+                  size="lg"
+                  target={data.secondaryCTA.openInNewTab ? "_blank" : undefined}
+                >
+                  {data.secondaryCTA.label}
+                </Button>
+              ) : null}
             </div>
           ) : null}
         </div>

@@ -40,7 +40,7 @@ function getHeaders(status: ContentStatus): HeadersInit {
   const token = process.env.STRAPI_API_TOKEN;
   const previewSecret = process.env.STRAPI_PREVIEW_SECRET;
 
-  if (token) {
+  if (token && token !== "your_strapi_api_token") {
     headers.Authorization = `Bearer ${token}`;
   }
 
@@ -245,7 +245,7 @@ async function strapiFetch(path: string, params: URLSearchParams, status: Conten
   try {
     response = await fetch(url, {
       headers: getHeaders(status),
-      next: { revalidate: status === "published" ? 5 : 0 },
+      cache: "no-store",
     });
   } catch {
     throw new StrapiUnavailableError();
